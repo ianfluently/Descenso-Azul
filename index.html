@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#031a2c">
+  <meta name="description" content="Descenso Azul: juego educativo para conocer el ODS 14 y ayudar a limpiar el océano.">
+  <title>Descenso Azul — ODS 14: Vida submarina</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="menu-open">
+  <canvas id="game" aria-label="Simulación interactiva del océano"></canvas>
+
+  <div id="hud">
+    <div class="topbar">
+      <div class="brand">
+        <strong>DESCENSO AZUL · ODS 14</strong>
+        <span>Vida submarina · limpia, explora, aprende</span>
+      </div>
+      <div class="stats" aria-live="polite">
+        <div>Puntos <b id="score">0</b></div>
+        <div>Basura <b id="trashCount">0</b></div>
+      </div>
+      <div class="mission" id="mission">Objetivo: alcanza 40 m con al menos 10 puntos para desbloquear la tortuga.</div>
+    </div>
+    <div class="depth">
+      <div class="number"><span id="depth">0</span> m</div>
+      <small>profundidad</small>
+    </div>
+    <div id="toast" role="status" aria-live="polite"></div>
+    <div id="hint">Mueve el cursor o toca la pantalla para controlar al animal · recoge los residuos</div>
+    <div id="legend">ODS 14 · Conservar y utilizar sosteniblemente los océanos</div>
+  </div>
+
+  <section id="startScreen" class="start-screen" aria-labelledby="startTitle">
+    <div class="start-card">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> EXPEDICIÓN EDUCATIVA · AGENDA 2030</div>
+      <div class="hero-art" aria-hidden="true">
+        <span class="hero-moon"></span><span class="hero-fish">🐠</span>
+        <span class="hero-bubble bubble-a"></span><span class="hero-bubble bubble-b"></span>
+        <span class="hero-bubble bubble-c"></span><span class="hero-wave"></span>
+      </div>
+      <h1 id="startTitle">DESCENSO <span>AZUL</span></h1>
+      <p class="subtitle">Una misión por la vida submarina</p>
+      <p class="intro">Desciende por el océano, recoge residuos y desbloquea nuevos exploradores marinos. Cada objeto que recuperas te acerca a una meta: comprender por qué proteger el mar es responsabilidad de todos.</p>
+      <div class="ods-note">
+        <span class="ods-number">14</span>
+        <div><strong>Objetivo de Desarrollo Sostenible 14</strong><p>“Vida submarina”: conservar y utilizar sosteniblemente los océanos, los mares y los recursos marinos. El juego aborda la contaminación marina y la importancia de reducir los residuos.</p></div>
+      </div>
+      <div class="start-actions">
+        <button id="startBtn" class="primary-btn">Iniciar expedición <span aria-hidden="true">→</span></button>
+        <button id="referencesBtn" class="secondary-btn">Referencias y créditos</button>
+      </div>
+      <div class="quick-rules"><span>⌖ Controla con mouse o pantalla táctil</span><span>✦ Recolecta basura para ganar puntos</span><span>↓ Desciende hasta 2000 m</span></div>
+      <p class="small-note">Simulación educativa: los movimientos de fauna y partículas se generan mediante algoritmos, no representan datos oceanográficos en tiempo real.</p>
+    </div>
+  </section>
+
+  <section id="referencesPanel" class="references-panel hidden" aria-labelledby="referencesTitle">
+    <div class="references-card">
+      <button id="closeReferences" class="close-btn" aria-label="Cerrar referencias">×</button>
+      <p class="eyebrow">FUENTES Y CRÉDITOS</p>
+      <h2 id="referencesTitle">Referencias del proyecto</h2>
+      <p>Estas fuentes fundamentan el objetivo ambiental y los conceptos de programación creativa utilizados.</p>
+      <ol>
+        <li><strong>Naciones Unidas.</strong> <em>Objetivo 14: Vida submarina.</em> Información oficial sobre conservación marina y contaminación. <a href="https://www.un.org/sustainabledevelopment/goal-14-life-below-water/" target="_blank" rel="noopener noreferrer">Consultar fuente ↗</a></li>
+        <li><strong>United Nations — Sustainable Development Goals.</strong> <em>Goal 14: Life Below Water.</em> Metas e indicadores del ODS 14. <a href="https://sdgs.un.org/goals/goal14" target="_blank" rel="noopener noreferrer">Consultar metas ↗</a></li>
+        <li><strong>Daniel Shiffman.</strong> <em>The Nature of Code</em> (edición web, 2024). Referencia conceptual para aleatoriedad, vectores, fuerzas, sistemas de partículas y agentes autónomos. <a href="https://natureofcode.com/" target="_blank" rel="noopener noreferrer">Leer libro ↗</a></li>
+        <li><strong>The Nature of Code — Chapter 5.</strong> <em>Autonomous Agents.</em> Conceptos de steering, búsqueda de objetivos, separación y comportamiento colectivo. <a href="https://natureofcode.com/autonomous-agents/" target="_blank" rel="noopener noreferrer">Consultar capítulo ↗</a></li>
+        <li><strong>The Nature of Code — Examples.</strong> Ejemplos didácticos de aleatoriedad, partículas y agentes autónomos. <a href="https://natureofcode.com/examples/" target="_blank" rel="noopener noreferrer">Ver ejemplos ↗</a></li>
+      </ol>
+      <div class="credit-note"><strong>Implementación:</strong> HTML, CSS y JavaScript nativo con Canvas. Las técnicas están implementadas de forma propia e inspiradas conceptualmente en las fuentes; no se copió código de ejemplo ni se requiere cargar p5.js o Three.js.</div>
+      <button id="playAgainBtn" class="primary-btn">Volver a la expedición →</button>
+    </div>
+  </section>
+
+  <div id="overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <p class="eyebrow">RESULTADO DE LA EXPEDICIÓN</p>
+      <h2 id="modalTitle"></h2>
+      <p id="modalText"></p>
+      <div class="score" id="modalScore"></div>
+      <button id="restart">Reiniciar expedición</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
